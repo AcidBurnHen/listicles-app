@@ -1,34 +1,123 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Listicles App
 
-## Getting Started
+Listicles App is being built using Next.js, Prisma and PostgreSQL.
 
-First, run the development server:
+## Todo
 
-```bash
-npm run dev
-# or
-yarn dev
-```
+### - Create admin dashboard
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+- Make a design for the admin dashboard
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+  #### - Permissions/roles for admin users
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
+  - Author
+    - Create Draft
+    - Delete Draft if is author
+    - Set draft as pending review
+  - Editor
+    - Delete other users posts
+    - Edit other users posts
+    - Create category
+    - Set all post states
+  - Super Admin
+    - Add/delete admin user
+    - Set/remove admin user role
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+  #### - Admin Sections and Functionalities:
 
-## Learn More
+  ##### - Posts
 
-To learn more about Next.js, take a look at the following resources:
+  - Pages
+    - Posts
+      - View all posts
+      - Search posts
+    - New Post
+      - Rich text editor using Editor.js
+      - CRUD Operations to manage posts from the DB
+  - Post states
+    - Draft
+    - Pending Review
+    - Approved
+    - Scheduled
+    - Published
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+  ##### - Listicles
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+  - Pages
+    - List Items
+    - Add New Item
+      - Custom text editor for various required fields
+      - Use gallery component to asociate image with the list item
+      - CRUD operations to manage list items in the DB
+  - Listicles Component
+    - Listicles block component for text editor
+    - Search list items by filter and keywords
+    - Add list to post with all required List item info
+    - Add author review field
+  - Required Fields:
+    - Category
+    - Title
+    - Alt Title
+    - Genres
+    - Synopsis
+    - Score
+  - Optional Fields:
+    - ...
 
-## Deploy on Vercel
+  #### - Reviews
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+  - Pages
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+    - Reviews (latest from users)
+      - View reviews from users
+      - Reviews are related to list items
+    - Spam?
+
+      - Spam protection for user reviews
+      - Add hidden flag to user account for admin user to review
+      - Sort latest spammed messages here as hidden flags
+      - Ability to remove flags and "trust" a user so they don't get spammed (used in rare occasions)
+
+      #### - Comments
+
+  - Pages
+    - Comments (latest from users)
+      - View comments from users
+      - Comments are related to posts
+    - Spam?
+      - Spam protection for user comments
+      - Add hidden flag to user account for admin user to review
+      - Sort latest spammed messages here as hidden flags
+      - Ability to remove flags and "trust" a user so they don't get spammed (used in rare occasions)
+
+  ##### - Category
+
+  - Pages
+    - Categories
+      - View all categories
+      - Search categories
+    - New Category
+      - CRUD operations to manage categories from the DB
+
+  ##### - Gallery
+
+  - Pages
+    - Images
+      - Retreive images from CDN or db to view the gallery images
+      - Search the gallery
+    - Add Image
+      - Post images to a CDN or db
+      - Input fields for title, alt and caption of image.
+      - Delete image from the cdn or db.
+  - Gallery component
+    - Gallery block component for rich text editor
+    - Add/remove images inside of editor
+    - Search images
+
+### - Create frontend/user dashboard on the public routes
+
+- Make a design for the frontend/user dashboard
+
+#### - Home page:
+
+    - ...
