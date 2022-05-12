@@ -18,7 +18,7 @@ export default function Home({ feed }) {
   return (
     <div>
       {feed.map(post => (
-        <div>
+        <div key={post.id}>
           <h2>{post.title}</h2>
           <p>Author: {post.author.name}</p>
           <span>{post.content}</span>

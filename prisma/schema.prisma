@@ -1,5 +1,6 @@
 generator client {
   provider = "prisma-client-js"
+  previewFeatures = ["dataProxy"]
 }
 
 datasource db {
@@ -15,26 +16,161 @@ model Post {
   excerpt String
   views Int @default(0)
   likes Int @default(0)
-  published Boolean @default(false)
-  author Author? @relation(fields: [authorId], references: [id])
+  postStatus PostStatus @default(DRAFT)
+  author User? @relation(fields: [authorId], references: [id])
   authorId Int?
   comments Comment[]
+
+  @@map(name: "posts")
 }
 
 model Comment {
   id Int @default(autoincrement()) @id
   comment String
-  postId Int
-  post Post @relation(fields: [postId], references: [id])
+  likes Int @default(0)
+  postId Int?
+  post Post? @relation(fields: [postId], references: [id])
+  userId Int?
+  user User? @relation(fields: [userId], references: [id])
+
+  @@map(name: "comments")
 }
 
-model Author {
+model User {
   id Int @default(autoincrement()) @id
-  name String?
-  email String? @unique
-  role String? 
+  name String
+  lastName String @map(name: "last_name")
+  username String @unique
+  email String @unique
+  password String
+  avatar String?
+  dateOfBirth DateTime @map(name:"date_of_birth")
+  role Role @default(USER)
   createdAt DateTime @default(now()) @map(name: "created_at")
   updatedAt DateTime @updatedAt @map(name: "updated_at")
   posts Post[]
-  @@map(name: "authors")
+  comments Comment[]
+  scores Score[]
+  reviews Review[]
+
+  @@map(name: "users")
 }
+
+model ListItem {
+  id Int @default(autoincrement()) @id
+  title String
+  altTitle String? @map(name: "alt_title")
+  synopsis String
+  type Type @default(OTHER)
+  score Score[]
+  genre Genre[]
+
+  @@map(name: "list_items")
+}
+
+model Score {
+  id Int @default(autoincrement()) @id
+  score Int @default(0)
+  userId Int
+  scoredBy User @relation(fields: [userId], references: [id])
+  itemId Int
+  scoreFor ListItem @relation(fields: [itemId], references: [id])
+}
+
+model Review {
+  id Int @default(autoincrement()) @id
+  review String
+  userId Int
+  reviewedBy User @relation(fields: [userId], references: [id])
+}
+
+enum Role {
+  USER 
+  AUTHOR 
+  EDITOR 
+  ADMIN
+
+  @@map(name: "roles")
+}
+
+enum PostStatus {
+  DRAFT
+  PENDING_REVIEW
+  APPROVED
+  SCHEDULED
+  PUBLISHED
+
+  @@map(name: "post_status")
+}
+
+enum Type {
+  TV_SERIES
+  MOVIE
+  ANIME 
+  DONGHUA
+  MANGA 
+  MANHWA
+  MANHUA
+  K_DRAMA
+  C_DRAMA
+  COMIC
+  CARTOON
+  GAME
+  BOOK
+  WEBTOON
+  NOVEL
+  LIGHT_NOVEL
+  GRAPHIC_NOVEL
+  OTHER
+
+  @@map(name: "types")
+}
+
+enum Genre {
+    ACTION
+    ADVENTURE
+    COMEDY
+    DRAMA
+    ECCHI
+    FANTASY
+    HAREM
+    HORROR
+    HISTORICAL
+    ISEKAI
+    JOSEI
+    KIDS
+    MAGIC
+    MARTIAL_ARTS
+    MILITARY
+    MECHA
+    MUSIC
+    MYSTERY
+    PARODY
+    POLICE
+    POST_APOCALYPSE
+    PSYCHOLOGICAL
+    REVERSE_HAREM
+    ROMANCE
+    SEINEN
+    SHOUNEN
+    SHOUNEN_AI
+    SHOUJO
+    SHOUJO_AI
+    SCHOOL
+    SCI_FI
+    SLICE_OF_LIFE
+    SPACE
+    SPORTS
+    SUPER_POWER
+    TRAGEDY
+    THRILLER
+    VAMPIRE
+    YURI
+    YAOI
+
+  @@map(name: "genres")
+}
+
+
+
+

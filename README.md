@@ -19,13 +19,13 @@ Listicles App is being built using Next.js, Prisma and PostgreSQL.
     - Edit other users posts
     - Create category
     - Set all post states
-  - Super Admin
+  - Admin
     - Add/delete admin user
     - Set/remove admin user role
 
   #### - Admin Sections and Functionalities:
 
-  ##### - Posts
+  - Posts
 
   - Pages
     - Posts
@@ -35,13 +35,14 @@ Listicles App is being built using Next.js, Prisma and PostgreSQL.
       - Rich text editor using Editor.js
       - CRUD Operations to manage posts from the DB
   - Post states
+
     - Draft
     - Pending Review
     - Approved
     - Scheduled
     - Published
 
-  ##### - Listicles
+  - Listicles
 
   - Pages
     - List Items
@@ -81,6 +82,7 @@ Listicles App is being built using Next.js, Prisma and PostgreSQL.
       #### - Comments
 
   - Pages
+
     - Comments (latest from users)
       - View comments from users
       - Comments are related to posts
@@ -90,16 +92,57 @@ Listicles App is being built using Next.js, Prisma and PostgreSQL.
       - Sort latest spammed messages here as hidden flags
       - Ability to remove flags and "trust" a user so they don't get spammed (used in rare occasions)
 
-  ##### - Category
+  - Genres:
+    [ACTION
+    ADVENTURE
+    COMEDY
+    DRAMA
+    ECCHI
+    FANTASY
+    HAREM
+    HORROR
+    HISTORICAL
+    ISEKAI
+    JOSEI
+    KIDS
+    MAGIC
+    MARTIAL_ARTS
+    MILITARY
+    MECHA
+    MUSIC
+    MYSTERY
+    PARODY
+    POLICE
+    POST_APOCALYPSE
+    PSYCHOLOGICAL
+    REVERSE_HAREM
+    ROMANCE
+    SEINEN
+    SHOUNEN
+    SHOUNEN_AI
+    SHOUJO
+    SHOUJO_AI
+    SCHOOL
+    SCI_FI
+    SLICE_OF_LIFE
+    SPACE
+    SPORTS
+    SUPER_POWER
+    TRAGEDY
+    THRILLER
+    VAMPIRE
+    YURI
+    YAOI]
 
   - Pages
+
     - Categories
       - View all categories
       - Search categories
     - New Category
       - CRUD operations to manage categories from the DB
 
-  ##### - Gallery
+  - Gallery
 
   - Pages
     - Images
