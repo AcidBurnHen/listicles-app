@@ -1,4 +1,4 @@
-import prisma from "../../lib/prisma";
+import prisma from "../../../lib/prisma";
 import { hash } from "bcrypt";
 
 export default async function signup(req, res) {
@@ -22,6 +22,6 @@ export default async function signup(req, res) {
       res.json(user);
     });
   } else {
-    res.status(405).json("Please try again");
+    res.status(405).json({ message: "Please try again" });
   }
 }
