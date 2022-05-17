@@ -8,6 +8,27 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+model User {
+  id Int @default(autoincrement()) @id
+  name String
+  lastName String @map(name: "last_name")
+  username String @unique
+  password String @unique
+  email String @unique
+  avatar String?
+  dateOfBirth DateTime? @map(name:"date_of_birth")
+  role Role @default(USER)
+  createdAt DateTime @default(now()) @map(name: "created_at")
+  updatedAt DateTime @updatedAt @map(name: "updated_at")
+  posts Post[]
+  comments Comment[]
+  scores Score[]
+  reviews Review[]
+  myLists MyList[] 
+
+  @@map(name: "users")
+}
+
 model Post {
   id Int @default(autoincrement()) @id
   title String
@@ -36,29 +57,10 @@ model Comment {
   @@map(name: "comments")
 }
 
-model User {
-  id Int @default(autoincrement()) @id
-  name String
-  lastName String @map(name: "last_name")
-  username String @unique
-  email String @unique
-  password String
-  avatar String?
-  dateOfBirth DateTime @map(name:"date_of_birth")
-  role Role @default(USER)
-  createdAt DateTime @default(now()) @map(name: "created_at")
-  updatedAt DateTime @updatedAt @map(name: "updated_at")
-  posts Post[]
-  comments Comment[]
-  scores Score[]
-  reviews Review[]
-
-  @@map(name: "users")
-}
-
 model ListItem {
   id Int @default(autoincrement()) @id
   title String
+  slug String
   altTitle String? @map(name: "alt_title")
   synopsis String
   type Type @default(OTHER)
@@ -66,6 +68,17 @@ model ListItem {
   genre Genre[]
 
   @@map(name: "list_items")
+}
+
+model MyList {
+  id Int @default(autoincrement()) @id
+  title String
+  slug String
+  items String
+  authorId Int?
+  author User? @relation(fields: [authorId], references: [id])
+
+  @@map(name: "my_list")
 }
 
 model Score {
@@ -79,7 +92,9 @@ model Score {
 
 model Review {
   id Int @default(autoincrement()) @id
+  title String
   review String
+  slug String
   userId Int
   reviewedBy User @relation(fields: [userId], references: [id])
 }

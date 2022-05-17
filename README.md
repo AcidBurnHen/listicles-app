@@ -79,7 +79,7 @@ Listicles App is being built using Next.js, Prisma and PostgreSQL.
       - Sort latest spammed messages here as hidden flags
       - Ability to remove flags and "trust" a user so they don't get spammed (used in rare occasions)
 
-      #### - Comments
+  #### - Comments
 
   - Pages
 
@@ -92,47 +92,7 @@ Listicles App is being built using Next.js, Prisma and PostgreSQL.
       - Sort latest spammed messages here as hidden flags
       - Ability to remove flags and "trust" a user so they don't get spammed (used in rare occasions)
 
-  - Genres:
-    [ACTION
-    ADVENTURE
-    COMEDY
-    DRAMA
-    ECCHI
-    FANTASY
-    HAREM
-    HORROR
-    HISTORICAL
-    ISEKAI
-    JOSEI
-    KIDS
-    MAGIC
-    MARTIAL_ARTS
-    MILITARY
-    MECHA
-    MUSIC
-    MYSTERY
-    PARODY
-    POLICE
-    POST_APOCALYPSE
-    PSYCHOLOGICAL
-    REVERSE_HAREM
-    ROMANCE
-    SEINEN
-    SHOUNEN
-    SHOUNEN_AI
-    SHOUJO
-    SHOUJO_AI
-    SCHOOL
-    SCI_FI
-    SLICE_OF_LIFE
-    SPACE
-    SPORTS
-    SUPER_POWER
-    TRAGEDY
-    THRILLER
-    VAMPIRE
-    YURI
-    YAOI]
+  - Genre
 
   - Pages
 
