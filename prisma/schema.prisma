@@ -29,6 +29,13 @@ model User {
   @@map(name: "users")
 }
 
+model Session {
+  id String @id
+  sid String @unique
+  data String
+  expiresAt DateTime
+}
+
 model Post {
   id Int @default(autoincrement()) @id
   title String

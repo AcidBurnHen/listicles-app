@@ -1,4 +1,4 @@
-import prisma from "../../../lib/prisma";
+import prisma from "@/lib/prisma";
 import { hash } from "bcrypt";
 
 export default async function signup(req, res) {
@@ -13,7 +13,6 @@ export default async function signup(req, res) {
           email: req.body.email
         }
       });
-      console.log(user);
 
       const users = await prisma.user.findMany();
 

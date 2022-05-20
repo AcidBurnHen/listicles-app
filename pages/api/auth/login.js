@@ -1,11 +1,9 @@
-import prisma from "../../../lib/prisma";
+import prisma from "@/lib/prisma";
 import { compare } from "bcrypt";
-import { sign } from "jsonwebtoken";
+import { getSession } from "@/lib/get-session";
 
 export default async function login(req, res) {
   if (req.method === "POST") {
-    // Add later - if person is defined validation
-
     const user = await prisma.user.findUnique({
       where: {
         email: req.body.email
@@ -14,16 +12,23 @@ export default async function login(req, res) {
 
     compare(req.body.password, user.password, async (err, result) => {
       if (!err && result) {
+        const session = await getSession(req, res);
         const userData = { id: user.id, name: user.username, avatar: user.avatar };
-        const jwt = sign(userData, process.env.JWT_SECRET, { expiresIn: "24h" });
-        res.json({ authToken: jwt });
+
+        session.cookie.user = userData;
+
+        res.send(session);
       } else {
-        res.json({ message: "Failed to log in" });
+        res.json({ error: "Failed to log in. Wrong username or password." });
       }
     });
-
-    console.log(user);
   } else {
-    res.status(405).json({ message: "Please try again" });
+    res.status(405).json({ error: "Failed to log in. Please try again." });
   }
 }
+
+export const config = {
+  api: {
+    externalResolver: true
+  }
+};
