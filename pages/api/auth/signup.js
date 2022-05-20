@@ -14,13 +14,9 @@ export default async function signup(req, res) {
         }
       });
 
-      const users = await prisma.user.findMany();
-
-      console.log(users);
-
-      res.json(user);
+      res.json({ msg: "Successfully signed up!" });
     });
   } else {
-    res.status(405).json({ message: "Please try again" });
+    res.status(405).json({ error: "Couldn't sign up. Please try again" });
   }
 }

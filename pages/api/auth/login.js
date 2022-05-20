@@ -15,9 +15,9 @@ export default async function login(req, res) {
         const session = await getSession(req, res);
         const userData = { id: user.id, name: user.username, avatar: user.avatar };
 
-        session.cookie.user = userData;
+        session.user = userData;
 
-        res.send(session);
+        res.send(session.user);
       } else {
         res.json({ error: "Failed to log in. Wrong username or password." });
       }
