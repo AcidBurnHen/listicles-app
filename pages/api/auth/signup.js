@@ -4,7 +4,7 @@ import { hash } from "bcrypt";
 export default async function signup(req, res) {
   if (req.method === "POST") {
     hash(req.body.password, 10, async (err, hash) => {
-      const user = await prisma.user.create({
+      await prisma.user.create({
         data: {
           name: req.body.name,
           lastName: req.body.last_name,
@@ -14,7 +14,7 @@ export default async function signup(req, res) {
         }
       });
 
-      res.json({ msg: "Successfully signed up!" });
+      res.status(201).json({ msg: "Successfully signed up!" });
     });
   } else {
     res.status(405).json({ error: "Couldn't sign up. Please try again" });

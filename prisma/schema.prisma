@@ -39,9 +39,9 @@ model Session {
 model Post {
   id Int @default(autoincrement()) @id
   title String
-  slug String
-  content String
-  excerpt String
+  slug String @unique
+  content String[]
+  excerpt String?
   views Int @default(0)
   likes Int @default(0)
   postStatus PostStatus @default(DRAFT)

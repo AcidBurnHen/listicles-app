@@ -17,7 +17,7 @@ export default async function login(req, res) {
 
         session.user = userData;
 
-        res.send(session.user);
+        res.status(200).send(session.user);
       } else {
         res.json({ error: "Failed to log in. Wrong username or password." });
       }
