@@ -15,6 +15,7 @@ model User {
   username String @unique
   password String @unique
   email String @unique
+  emailVerified Boolean @default(false)
   avatar String?
   dateOfBirth DateTime? @map(name:"date_of_birth")
   role Role @default(USER)
@@ -25,6 +26,7 @@ model User {
   scores Score[]
   reviews Review[]
   myLists MyList[] 
+  emailToken EmailToken?
 
   @@map(name: "users")
 }
@@ -36,6 +38,14 @@ model Session {
   expiresAt DateTime
 }
 
+model EmailToken {
+  id String @id
+  token String @unique
+  expiresAt DateTime @default(now())
+  userId Int
+  user User @relation(fields: [userId], references: [id])
+}
+
 model Post {
   id Int @default(autoincrement()) @id
   title String
@@ -44,6 +54,8 @@ model Post {
   excerpt String?
   views Int @default(0)
   likes Int @default(0)
+  createdAt DateTime @default(now()) @map(name: "created_at")
+  updatedAt DateTime @updatedAt @map(name: "updated_at")
   postStatus PostStatus @default(DRAFT)
   author User? @relation(fields: [authorId], references: [id])
   authorId Int?
